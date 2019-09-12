@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bake Factory</title>
+    <link rel="shortcut icon" type="image/png" href="/assets/images/cake_logo.jpeg"/>
+    <link rel="stylesheet" type="text/css" href="/assets/stylesheets/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Allura%7CGreat%20Vibes'>
+</head>
+<body>
+<div id="bodyHeader">
+    <% include partials/header.ejs %>
+    <% include partials/user-navigation.ejs %>
+</div>
+<div id="bodyMain">
+    <% include partials/site-navigation.ejs %>
+    <main class="item">
+        <p>Home > Categories > Item </p>
+        <div id="back">
+            <a href="/categories" class="button">Back</a>
+        </div>
+        <img src="<%= item._itemImageURL %>" alt="<%= item._itemName %>">
+        <h2><%= item._itemName %></h2>
+        <h3><%= item._itemCategory %></h3>
+        <span><b>Average rating :</b></span>
+        <% var rating = item._itemRating;
+        for(let x = 0;x < rating;x++){ %>
+            <span class="fa fa-star checked"></span>
+        <% }
+        if(rating < 5){
+        for(let i = 0;i < (5 - rating);i++){ %>
+            <span class="fa fa-star "></span>
+        <% }} %>
+        <br>
+    <form action="/profile" method="post">
+        <input type="hidden" name="itemCode" value="<%= item._itemCode %>"/>
+        <input type="hidden" name="itemList" value="<%= item._itemCode %>"/>
+        <button type="submit" class="button" name="action" value="save"><i
+                    class="fa fa-heart">&nbsp;Save it</i></button>
+        <button type="submit" class="button" name="action" value="rateIt"><i
+                    class="fa fa-heart">&nbsp;Rate it</i></button>
+    </form>
+
+
+        <section class="description">
+            <h3>Description</h3>
+            <p><%= item._itemDescription %></p>
+        </section>
+
+        <section class="description">
+            <h3>Ingredients</h3>
+            <p><%= item._itemIngredients %></p>
+        </section>
+
+        <section class="description">
+            <h3>Recipe</h3>
+            <p><%= item._itemRecipe %></p>
+        </section>
+    </main>
+</div>
+<% include partials/footer.ejs %>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bake Factory</title>
+    <link rel="shortcut icon" type="image/png" href="/assets/images/cake_logo.jpeg"/>
+    <link rel="stylesheet" type="text/css" href="/assets/stylesheets/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Allura%7CGreat%20Vibes'>
+</head>
+<body>
+<div id="bodyHeader">
+    <% include partials/header.ejs %>
+    <% include partials/user-navigation.ejs %>
+</div>
+<div id="bodyMain">
+    <% include partials/site-navigation.ejs %>
+    <main>
+        <h3> User is not logged in.Please login here.<a href="/profile/signIn">SignIn</a></h3>
+    </main>
+</div>
+<% include partials/footer.ejs %>
+</body>
+</html>

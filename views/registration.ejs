@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bake Factory</title>
+    <link rel="shortcut icon" type="image/png" href="/assets/images/cake_logo.jpeg"/>
+    <link rel="stylesheet" type="text/css" href="/assets/stylesheets/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Allura%7CGreat%20Vibes'>
+</head>
+<body>
+<% include partials/header.ejs %>
+<% include partials/user-navigation.ejs %>
+<div id="bodyMain">
+    <% include partials/site-navigation.ejs %>
+    <main>
+        <h2>Register Yourself</h2>
+        <br>
+        <h4>Please register yourself to create an account.</h4>
+
+        <div class="msg">
+            <% if(msg != null){ %>
+                <p><%= msg %></p>
+            <% } %>
+        </div>
+        <div class="msg2">
+            <% if(error.length>0){%>
+            <h4>Errors<h4>
+                    <%for(let i=0;i<error.length;i++){%>
+                        <p><%= error[i].param + " : " +error[i].msg  %></p>
+                    <%}}%>
+        </div>
+
+        <br>
+        <form action="/profile/register" method="post">
+            <section class="register">
+                <label class="required"><b>Firstname</b></label>
+                <input type="text" placeholder="Enter firstname" name="firstname" required>
+
+                <label class="required"><b>lastname</b></label>
+                <input type="text" placeholder="Enter lastname" name="lastname" required>
+
+                <label><b>email address</b></label>
+                <input type="email" placeholder="Enter your email" name="email">
+
+                <label><b>address 1</b></label>
+                <input type="text" placeholder="Enter address 1" name="address1">
+
+                <label><b>address2</b></label>
+                <input type="text" placeholder="Enter address 2" name="address2">
+
+                <label><b>City</b></label>
+                <input type="text" placeholder="Enter City" name="city">
+
+                <label><b>State</b></label>
+                <input type="text" placeholder="Enter State" name="state">
+
+                <label><b>zipCode</b></label>
+                <input type="text" placeholder="Enter zipCode" name="zipcode">
+
+                <label><b>Country</b></label>
+                <input type="text" placeholder="Enter Country" name="country">
+
+            </section>
+            <section class="register">
+                <label class="required"><b>Username</b></label>
+                <input type="text" placeholder="Enter Username" name="username" required>
+
+                <label class="required"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="password" required>
+
+                <label class="required"><b>Confirm Password</b></label>
+                <input type="password" placeholder="Confirm Password" name="password2" required>
+
+                <button type="submit" class="button">Register</button>
+
+            </section>
+
+        </form>
+    </main>
+</div>
+<% include partials/footer.ejs %>
+</body>
+</html>

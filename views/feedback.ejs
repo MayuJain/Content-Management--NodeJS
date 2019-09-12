@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bake Factory</title>
+    <link rel="shortcut icon" type="image/png" href="/assets/images/cake_logo.jpeg"/>
+    <link rel="stylesheet" type="text/css" href="/assets/stylesheets/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Allura%7CGreat%20Vibes'>
+</head>
+<body>
+<div id="bodyHeader">
+    <% include partials/header.ejs %>
+    <% include partials/user-navigation.ejs %>
+</div>
+<div id="bodyMain">
+    <% include partials/site-navigation.ejs %>
+    <main class="item">
+        <p>
+        <h2>Give your feedback for</h2>
+        <img src="<%= theItem._itemImageURL %>" alt="theItem._itemName">
+        <h3><%= theItem._itemName %></h3>
+        <h4><%= theItem._itemCategory %></h4>
+        <section class="description">
+            <h4>Description</h4>
+            <p><%= theItem._itemDescription %></p>
+        </section>
+        <br>
+        <span><b>Rating</b></span>
+        <form action="/profile" method="post">
+            <label>
+                <select name="rating">
+                    <% if(userItem._rating === 0){ %>
+                        <option value="0" selected>No Rating</option>
+                    <% }else{ %>
+                        <option value="0">No Rating</option>
+                    <% } %>
+                    <% if(userItem._rating === 1){ %>
+                        <option value="1" selected>&#9733;</option>
+                    <% }else{ %>
+                        <option value="1">&#9733;</option>
+                    <% } %>
+                    <% if(userItem._rating === 2){ %>
+                        <option value="2" selected>&#9733; &#9733;</option>
+                    <% }else{ %>
+                        <option value="2">&#9733; &#9733;</option>
+                    <% } %>
+                    <% if(userItem._rating === 3){ %>
+                        <option value="3" selected>&#9733; &#9733; &#9733;</option>
+                    <% }else{ %>
+                        <option value="3">&#9733; &#9733; &#9733;</option>
+                    <% } %>
+                    <% if(userItem._rating === 4){ %>
+                        <option value="4" selected>&#9733; &#9733; &#9733; &#9733;</option>
+                    <% }else{ %>
+                        <option value="4">&#9733; &#9733; &#9733; &#9733;</option>
+                    <% } %>
+                    <% if(userItem._rating === 5){ %>
+                        <option value="5" selected>&#9733; &#9733; &#9733; &#9733; &#9733;</option>
+                    <% }else{ %>
+                        <option value="5">&#9733; &#9733; &#9733; &#9733; &#9733;</option>
+                    <% } %>
+                </select>
+            </label>
+            <input type="hidden" name="itemCode" value="<%= theItem._itemCode %>"/>
+            <input type="hidden" name="itemList" value="<%= theItem._itemCode %>"/>
+
+            <button type="submit" class="button" name="action" value="updateRating"><i class="fa fa-question">&nbsp;Confirm
+                    Rating</i></button>
+
+            <br>
+            <br>
+            <% if(userItem._madeIt){ %>
+                <label><input type="radio" name="madeItFlag" value="true" checked>Yes</label>
+                <label><input type="radio" name="madeItFlag" value="false">No</label>
+            <% }else{ %>
+                <label><input type="radio" name="madeItFlag" value="true">Yes</label>
+                <label><input type="radio" name="madeItFlag" value="false" checked>No</label>
+            <% } %>
+            <button type="submit" class="button" name="action" value="updateFlag"><i class="fa fa-check">&nbsp;Made
+                    it</i></button>
+        </form>
+
+    </main>
+</div>
+<% include partials/footer.ejs %>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bake Factory</title>
+    <link rel="shortcut icon" type="image/png" href="/assets/images/cake_logo.jpeg"/>
+    <link rel="stylesheet" type="text/css" href="/assets/stylesheets/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Allura%7CGreat%20Vibes'>
+</head>
+<body>
+<div id="bodyHeader">
+    <% include partials/header.ejs %>
+    <% include partials/user-navigation.ejs %>
+</div>
+<div id="bodyMain">
+    <% include partials/site-navigation.ejs %>
+    <main>
+        <div class="msg">
+            <% if(msg != null){ %>
+                <p><%= msg %></p>
+            <% } %>
+        </div>
+        <div class="msg2">
+            <% if(error.length>0){%>
+            <h4>Errors</h4>
+                    <%for(let i=0;i<error.length;i++){%>
+                        <p><%= error[i].param + " : " +error[i].msg  %></p>
+                    <%}}%>
+        </div>
+        <h2>My Saved Items</h2>
+
+        <table>
+            <tr>
+                <th>Items</th>
+                <th>Category</th>
+                <th>My Rating</th>
+                <th>Made It</th>
+                <th></th>
+            </tr>
+            <% for(let z = 0;z < items.length;z++){ %>
+                <tr>
+                    <td><%= items[z]._Item._itemName %></td>
+                    <td><%= items[z]._Item._itemCategory %></td>
+                    <td>
+                        <% var rating = items[z]._rating;
+                        for(let x = 0;x < rating;x++){ %>
+                            <span class="fa fa-star checked"></span>
+                        <% }
+                        if(rating < 5){
+                        for(let i = 0;i < (5 - rating);i++){ %>
+                            <span class="fa fa-star "></span>
+                        <% }} %>
+                    </td>
+                    <td>
+                        <% if(items[z]._madeIt){ %>
+                            <span>&#10003;</span>
+                        <% } %>
+                    </td>
+                    <td>
+                        <form action="/profile" method="post">
+                            <input type="hidden" name="itemCode" value="<%= items[z]._Item._itemCode %>"/>
+                            <% for(let y = 0;y < items.length;y++){ %>
+                                <input type="hidden" name="itemList" value="<%= items[y]._Item._itemCode %>"/>
+                            <% } %>
+                            <button type="submit" class="button" name="action" value="updateProfile">&nbsp;Update
+                            </button>
+                            <button type="submit" class="button" name="action" value="deleteItem">&nbsp;Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            <% } %>
+
+        </table>
+        <form action="/profile/deleteAll" method="post">
+            <div id="deleteAll">
+                <button type="submit" class="button" name="action" value="deleteAll">&nbsp;Delete All</button>
+            </div>
+        </form>
+
+
+        <p class="disclaimer">Click <a href="/addItem">here</a>
+            to add a new item.</p>
+    </main>
+</div>
+<% include partials/footer.ejs %>
+
+</body>
+</html>

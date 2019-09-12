@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bake Factory</title>
+    <link rel="shortcut icon" type="image/png" href="/assets/images/cake_logo.jpeg"/>
+    <link rel="stylesheet" type="text/css" href="/assets/stylesheets/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Allura%7CGreat%20Vibes'>
+</head>
+<body>
+<% include partials/header.ejs %>
+<% include partials/user-navigation.ejs %>
+<div id="bodyMain">
+    <% include partials/site-navigation.ejs %>
+    <main class="category">
+        <div class="msg2">
+            <% if(error.length>0){%>
+            <h4>Errors</h4>
+                    <%for(let i=0;i<error.length;i++){%>
+                        <p><%= error[i].param + " : " +error[i].msg  %></p>
+                    <%}}%>
+        </div>
+        <h2>Categories</h2>
+        <section>
+            <% category.forEach(function (categoryName) { %>
+                <h3><%= categoryName %></h3>
+                <ul>
+                    <% items.forEach(function(item){
+                    if (item._itemCategory === categoryName){ %>
+                        <li><a href="/categories/items/<%= item._itemCode %>" target="_self"><%= item._itemName %></a>
+                        </li>
+                    <% }
+                    }) %>
+                </ul>
+            <% }) %>
+        </section>
+    </main>
+</div>
+<% include partials/footer.ejs %>
+</body>
+</html>

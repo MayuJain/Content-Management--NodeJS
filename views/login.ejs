@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bake Factory</title>
+    <link rel="shortcut icon" type="image/png" href="/assets/images/cake_logo.jpeg"/>
+    <link rel="stylesheet" type="text/css" href="/assets/stylesheets/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Allura%7CGreat%20Vibes'>
+</head>
+<body>
+<% include partials/header.ejs %>
+<% include partials/user-navigation.ejs %>
+<div id="bodyMain">
+    <% include partials/site-navigation.ejs %>
+    <main>
+        <h2>Welcome to Bake Factory</h2>
+        <br>
+        <h4>Please enter your username and password to Sign in.</h4>
+
+        <div class="msg">
+            <% if(msg != null){ %>
+                <p><%= msg %></p>
+            <% } %>
+        </div>
+        <div class="msg2">
+            <% if(error.length>0){%>
+            <h4>Errors</h4>
+                    <%for(let i=0;i<error.length;i++){%>
+                        <p><%= error[i].param + " : " +error[i].msg  %></p>
+                    <%}}%>
+        </div>
+
+        <br>
+        <form action="/profile/login" method="post">
+        <div class="login">
+        <label><b>Username</b></label>
+        <input type="text" placeholder="Enter Username" name="username" required>
+
+        <label><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="password" required>
+
+        <button type="submit" class="button" name="action" value="signIn">Login</button>
+        </div>
+        </form>
+
+        <p> If you are a new user, Please click on <a href="/register"><i class="fa fa-user" aria-hidden="false">New User</i></a></p>
+
+
+
+    </main>
+</div>
+<% include partials/footer.ejs %>
+</body>
+</html>

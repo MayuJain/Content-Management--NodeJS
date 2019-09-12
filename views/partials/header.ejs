@@ -1,0 +1,9 @@
+<header class="mainHeader">
+    <p id="banner"><img id="logo" src="/assets/images/cake_logo.jpeg" alt="logo"/>Bake Factory</p>
+    <p id="tagline">A little bliss in every bite.</p>
+    <% if(typeof (user) !== 'undefined'){ %>
+        <p id="signInStatus"><%= user._firstName + " " + user._lastName %></p>
+    <% }else{ %>
+        <p id="signInStatus">Not signed in.</p>
+    <% } %>
+</header>

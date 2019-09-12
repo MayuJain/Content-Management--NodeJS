@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bake Factory</title>
+    <link rel="shortcut icon" type="image/png" href="/assets/images/cake_logo.jpeg"/>
+    <link rel="stylesheet" type="text/css" href="/assets/stylesheets/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Allura%7CGreat%20Vibes'>
+</head>
+<body>
+<% include partials/header.ejs %>
+<% include partials/user-navigation.ejs %>
+<div id="bodyMain">
+    <% include partials/site-navigation.ejs %>
+    <main>
+        <h2>Add your recipe</h2>
+        <br>
+        <h4>Please all fields below to add your recipe.</h4>
+
+        <div class="msg">
+            <% if(msg != null){ %>
+                <p><%= msg %></p>
+            <% } %>
+        </div>
+        <div class="msg2">
+            <% if(error.length>0){%>
+            <h4>Errors</h4>
+                    <%for(let i=0;i<error.length;i++){%>
+                        <p><%= error[i].param + " : " +error[i].msg  %></p>
+                    <%}}%>
+        </div>
+
+        <br>
+        <form action="/profile/addItem" method="post">
+            <section class="register">
+                <label class="required"><b>Recipe Name</b></label>
+                <input type="text" placeholder="Enter Recipe name" name="itemName" required>
+
+                <br>
+
+                <label class="required"><b>Category</b></label>
+                <br>
+                <label>
+                    <select name="itemCategory">
+                        <option value="Cakes">Cakes</option>
+                        <option value="Donuts">Donuts</option>
+                        <option value="Cupcakes">Cupcakes</option>
+                        <option value="Brownies">Brownies</option>
+                        <option value="Cookies">Cookies</option>
+                        <option value="Bread">Bread</option>
+                        <option value="CandyChoc">Candy & Chocolate</option>
+                    </select>
+                </label>
+                <br>
+                <br>
+                <label class="required"><b>Description</b></label>
+                <input type="text" placeholder="Enter brief description" name="itemDescription" required>
+
+                <label><b>Rating</b></label>
+                <br>
+                <label>
+                    <select name="itemRating">
+                        <option value="0">No rating</option>
+                        <option value="1">&#9733;</option>
+                        <option value="2">&#9733; &#9733;</option>
+                        <option value="3">&#9733; &#9733; &#9733;</option>
+                        <option value="4">&#9733; &#9733; &#9733; &#9733;</option>
+                        <option value="5">&#9733; &#9733; &#9733; &#9733; &#9733;</option>
+                    </select>
+                </label>
+                <br>
+                <br>
+                <span class="required"><b>Ingredients</b></span>
+                <br>
+                <label>
+                <textarea rows = "5" cols = "100" name = "itemIngredients" placeholder="Enter Ingredients" required>
+                </textarea>
+                </label>
+
+                <br>
+                <br>
+                <span class="required"><b>Recipe</b></span>
+                <br>
+                <label>
+                <textarea rows = "7" cols = "150" name = "itemRecipe" placeholder="Enter Recipe" required>
+                </textarea>
+                </label>
+
+                <button type="submit" class="button">Add Recipe</button>
+
+            </section>
+
+
+        </form>
+    </main>
+</div>
+<% include partials/footer.ejs %>
+</body>
+</html>

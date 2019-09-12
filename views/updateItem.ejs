@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bake Factory</title>
+    <link rel="shortcut icon" type="image/png" href="/assets/images/cake_logo.jpeg"/>
+    <link rel="stylesheet" type="text/css" href="/assets/stylesheets/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Allura%7CGreat%20Vibes'>
+</head>
+<body>
+<% include partials/header.ejs %>
+<% include partials/user-navigation.ejs %>
+<div id="bodyMain">
+    <% include partials/site-navigation.ejs %>
+    <main>
+        <h2>Edit your recipe</h2>
+        <br>
+
+        <form action="/profile/updateProfile" method="post">
+            <section class="register">
+                <label class="required"><b>Recipe Name</b></label>
+                <label>
+                    <input contenteditable="true" type="text" name="itemName" value="<%= item._itemName %>" required>
+                </label>
+
+                <br>
+
+                <label class="required"><b>Category</b></label>
+                <br>
+                <label>
+                    <select name="itemCategory">
+
+                        <% if(item._itemCategory === "Cakes"){ %>
+                            <option value="Cakes" selected>Cakes</option>
+                        <% }else{ %>
+                            <option value="Cakes">Cakes</option>
+                        <% } %>
+                        <% if(item._itemCategory === "Donuts"){ %>
+                            <option value="Donuts" selected>Donuts</option>
+                        <% }else{ %>
+                            <option value="Donuts">Donuts</option>
+                        <% } %>
+                        <% if(item._itemCategory === "Cupcakes"){ %>
+                            <option value="Cupcakes" selected>Cupcakes</option>
+                        <% }else{ %>
+                            <option value="Cupcakes">Cupcakes</option>
+                        <% } %>
+                        <% if(item._itemCategory === "Brownies"){ %>
+                            <option value="Brownies" selected>Brownies</option>
+                        <% }else{ %>
+                            <option value="Brownies">Brownies</option>
+                        <% } %>
+                        <% if(item._itemCategory === "Cookies"){ %>
+                            <option value="Cookies" selected>Cookies</option>
+                        <% }else{ %>
+                            <option value="Cookies">Cookies</option>
+                        <% } %>
+                        <% if(item._itemCategory === "Bread"){ %>
+                            <option value="Bread" selected>Bread</option>
+                        <% }else{ %>
+                            <option value="Bread">Bread</option>
+                        <% } %>
+                        <% if(item._itemCategory === "CandyChoc"){ %>
+                            <option value="CandyChoc" selected>Candy & Chocolate</option>
+                        <% }else{ %>
+                            <option value="CandyChoc">Candy & Chocolate</option>
+                        <% } %>
+                    </select>
+                </label>
+                <br>
+                <br>
+                <label class="required"><b>Description</b></label>
+                <label>
+                    <input type="text" name="itemDescription" value="<%= item._itemDescription %>" required>
+                </label>
+
+                <label><b>Rating</b></label>
+                <br>
+                <label>
+                    <select name="itemRating">
+                        <option value="0">No rating</option>
+                        <option value="1">&#9733;</option>
+                        <option value="2">&#9733; &#9733;</option>
+                        <option value="3">&#9733; &#9733; &#9733;</option>
+                        <option value="4">&#9733; &#9733; &#9733; &#9733;</option>
+                        <option value="5">&#9733; &#9733; &#9733; &#9733; &#9733;</option>
+                    </select>
+                </label>
+                <br>
+                <br>
+                <span class="required"><b>Ingredients</b></span>
+                <br>
+                <label>
+                <textarea rows="5" cols="100" name="itemIngredients" value="<%= item._itemIngredients %>" required>
+                </textarea>
+                </label>
+
+                <br>
+                <br>
+                <span class="required"><b>Recipe</b></span>
+                <br>
+                <label>
+                <textarea rows="7" cols="150" name="itemRecipe" value="<%= item._itemRecipe %>" required>
+                </textarea>
+                </label>
+
+                <button type="submit" class="button">Update Recipe</button>
+
+            </section>
+
+
+        </form>
+    </main>
+</div>
+<% include partials/footer.ejs %>
+</body>
+</html>
